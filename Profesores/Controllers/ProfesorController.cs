@@ -14,9 +14,11 @@ namespace Profesores.Controllers
 {
     public class ProfesorController : ApiController
     {
+        //----------------------------------------------------------------------------CADENA DE CONEXION
         private static string CadenaConexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ToString();
         private static List<ClassProfesor> NuevoProfesor = new List<ClassProfesor>();
-        // GET: Profesor
+
+        //----------------------------------------------------------------------------MOSTRAR
         [HttpGet]
         public List<ClassProfesor> Index()
         {
@@ -51,6 +53,42 @@ namespace Profesores.Controllers
                 }
             }
             return NuevoProfesor;
+        }
+
+        //-----------------------------------------------------------------------------REGISTRAR
+        public static bool Registrar(ClassProfesor NuevoProfesor)
+        {
+            using (SqlConnection NuevaConexion = new SqlConnection(CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO Profesor(RegistroEmpleado, Nombre, Ap_pat, Ap_Mat, Genero, Categoria, Correo, Celular, F_EdoCivil)"+
+                    "VALUES (@RegistroEmpleado, @Nombre, @Ap_pat, @Ap_Mat, @Genero, @Categoria, @Correo, @Celular, @F_EdoCivil)", NuevaConexion);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@RegistroEmpleado", NuevoProfesor.RegistroEmpleado);
+                cmd.Parameters.AddWithValue("@Nombre", NuevoProfesor.Nombre);
+                cmd.Parameters.AddWithValue("@Ap_pat", NuevoProfesor.Ap_pat);
+                cmd.Parameters.AddWithValue("@Ap_Mat", NuevoProfesor.Ap_Mat);
+                cmd.Parameters.AddWithValue("@Genero", NuevoProfesor.Genero);
+                cmd.Parameters.AddWithValue("@Categoria", NuevoProfesor.Categoria);
+                cmd.Parameters.AddWithValue("@Correo", NuevoProfesor.Correo);
+                cmd.Parameters.AddWithValue("@Celular", NuevoProfesor.Celular);
+                cmd.Parameters.AddWithValue("@F_EdoCivil", NuevoProfesor.F_EdoCivil);
+
+                try
+                {
+                    NuevaConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool Post([FromBody]ClassProfesor NuevoProfesor)
+        {
+            return Registrar(NuevoProfesor);
         }
     }
 }
