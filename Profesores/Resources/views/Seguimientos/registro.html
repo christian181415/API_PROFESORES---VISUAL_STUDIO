@@ -28,7 +28,7 @@
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
+                   aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Profesores</span>
                 </a>
@@ -48,14 +48,14 @@
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                   aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Positivos</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="../Positivos/positivos.html">Profesores</a>
+                        <a class="collapse-item" href="../Positivos/positivo.html">Profesores</a>
                         <a class="collapse-item" href="../Positivos/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsethree"
-                    aria-expanded="true" aria-controls="collapsethree">
+                   aria-expanded="true" aria-controls="collapsethree">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Seguimientos</span>
                 </a>
@@ -86,7 +86,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="../Presentan/presentan.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Presentan</span></a>
+                    <span>Presentan</span>
+                </a>
             </li>
 
 
@@ -104,11 +105,11 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Presentan</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Jaime Andres Aguilar Aguila
@@ -124,8 +125,30 @@
 
 
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Registro</h1>
-                </div>
+                    <div class="card mb-4">
+                        <div class="card-header m-0 font-weight-bold text-primary">
+                            Registro de Seguimiento Profesores
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <input type="hidden" id="txtidSegui">
+                                    <input type="text" class="form-control form-control-user mb-2" id="txtF_positivoProfe" placeholder="Positivo Profe">
+                                    <input type="text" class="form-control form-control-user mb-2" id="txtF_medico" placeholder="Medico">
+                                    <input type="date" class="form-control form-control-user mb-2" id="txtFecha" placeholder="Fecha">
+                                    <input type="text" class="form-control form-control-user mb-2" id="txtForm_Comunica" placeholder="Comunica">
+                                    <input type="text" class="form-control form-control-user mb-2" id="txtReporte" placeholder="Reporte">
+                                    <input type="text" class="form-control form-control-user mb-2" id="txtEntrevista" placeholder="Entrevista">
+                                    <input type="text" class="form-control form-control-user mb-2" id="txtExtra" placeholder="Extra">
+                                    <input type="text" class="form-control form-control-user mb-2" id="txtimagen" placeholder="imagen">
+                                </div>
+                                <a href="#" class="btn btn-primary btn-user btn-block mb-4">
+                                    GUARDAR
+                                </a>
+                                <button type="button" class="btn btn-primary btn-user btn-block mb-4" onclick="GuardarProfesor()">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -134,6 +157,32 @@
     </a>
 
 
+
+    <script>
+        function GuardarProfesor() {
+            var data = {
+                F_positivoProfe: $("#txtF_positivoProfe").val(),
+                F_medico: $("#txtF_medico").val(),
+                Fecha: $("#txtFecha").val(),
+                Form_Comunica: $("#txtForm_Comunica").val(),
+                Reporte: $("#txtReporte").val(),
+                Entrevista: $("#txtEntrevista").val(),
+                Extra: $("#txtExtra").val(),
+                imagen: $("#txtimagen").val()
+            }
+
+            $.post("http://localhost:60805/api/SeguimientoProfe?type=json", data)
+                .done(function (response) {
+                    console.log(response);
+                    if (response) {
+                        alert("Usuario Registrado");
+                        window.location = "seguimiento.html";
+                    } else {
+                        alert("Error al guardar");
+                    }
+                });
+        }
+    </script>
     <script src="../../vendor/jquery/jquery.min.js"></script>
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>

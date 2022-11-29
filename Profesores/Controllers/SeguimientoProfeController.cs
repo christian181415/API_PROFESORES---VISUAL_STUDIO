@@ -24,7 +24,7 @@ namespace Profesores.Controllers
 
             using (SqlConnection NuevaConexion = new SqlConnection(CadenaConexion))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Profesor", NuevaConexion);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM SeguimientoPRO", NuevaConexion);
                 cmd.CommandType = CommandType.Text;
                 NuevaConexion.Open();
 
@@ -50,6 +50,43 @@ namespace Profesores.Controllers
                 }
             }
             return NuevoSeguimiento;
+        }
+
+
+
+        //-----------------------------------------------------------------------------REGISTRAR
+        public static bool Registrar(ClassSeguimientoProfe NuevoSeguimiento)
+        {
+            using (SqlConnection NuevaConexion = new SqlConnection(CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO SeguimientoPRO(F_positivoProfe, F_medico, Fecha, Form_Comunica, Reporte, Entrevista, Extra, imagen)" +
+                    "VALUES (@F_positivoProfe, @F_medico, @Fecha, @Form_Comunica, @Reporte, @Entrevista, @Extra, @imagen)", NuevaConexion);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@F_positivoProfe", NuevoSeguimiento.F_positivoProfe);
+                cmd.Parameters.AddWithValue("@F_medico", NuevoSeguimiento.F_medico);
+                cmd.Parameters.AddWithValue("@Fecha", NuevoSeguimiento.Fecha);
+                cmd.Parameters.AddWithValue("@Form_Comunica", NuevoSeguimiento.Form_Comunica);
+                cmd.Parameters.AddWithValue("@Reporte", NuevoSeguimiento.Reporte);
+                cmd.Parameters.AddWithValue("@Entrevista", NuevoSeguimiento.Entrevista);
+                cmd.Parameters.AddWithValue("@Extra", NuevoSeguimiento.Extra);
+                cmd.Parameters.AddWithValue("@imagen", NuevoSeguimiento.imagen);
+
+                try
+                {
+                    NuevaConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool Post([FromBody] ClassSeguimientoProfe NuevoSeguimiento)
+        {
+            return Registrar(NuevoSeguimiento);
         }
     }
 }

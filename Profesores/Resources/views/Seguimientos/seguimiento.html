@@ -28,7 +28,7 @@
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
+                   aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Profesores</span>
                 </a>
@@ -48,14 +48,14 @@
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                   aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Positivos</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="../Positivos/positivos.html">Profesores</a>
+                        <a class="collapse-item" href="../Positivos/positivo.html">Profesores</a>
                         <a class="collapse-item" href="../Positivos/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsethree"
-                    aria-expanded="true" aria-controls="collapsethree">
+                   aria-expanded="true" aria-controls="collapsethree">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Seguimientos</span>
                 </a>
@@ -86,7 +86,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="../Presentan/presentan.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Presentan</span></a>
+                    <span>Presentan</span>
+                </a>
             </li>
 
 
@@ -104,11 +105,11 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Presentan</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Jaime Andres Aguilar Aguila
@@ -134,17 +135,18 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>RegistroEmpleado</th>
-                                            <th>Nombre</th>
-                                            <th>AP Paterno</th>
-                                            <th>AP Materno</th>
-                                            <th>Genero</th>
-                                            <th>Categoria</th>
-                                            <th>Correo</th>
-                                            <th>Celular</th>
+                                            <th>ID</th>
+                                            <th>F PositivoProfe</th>
+                                            <th>F Medico</th>
+                                            <th>Fecha</th>
+                                            <th>Form Comunica</th>
+                                            <th>Reporte</th>
+                                            <th>Entrevista</th>
+                                            <th>Extra</th>
+                                            <th>Imagen</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="data">
                                     </tbody>
                                 </table>
                             </div>
@@ -159,6 +161,31 @@
     </a>
 
 
+
+    <script>
+        let url = 'http://localhost:60805/api/SeguimientoProfe?type=json'
+        fetch(url)
+            .then(response => response.json())
+            .then(data => mostrarData(data))
+            .then(error => console.log(error))
+
+        const mostrarData = (data) => {
+            console.log(data);
+            let body = ''
+            for (let i = 0; i < data.length; i++) {
+                body += `<tr><td>${data[i].id_Segui}</td>
+                            <td>${data[i].F_positivoProfe}</td>
+                            <td>${data[i].F_medico}</td>
+                            <td>${data[i].Fecha}</td>
+                            <td>${data[i].Form_Comunica}</td>
+                            <td>${data[i].Reporte}</td>
+                            <td>${data[i].Entrevista}</td>
+                            <td>${data[i].Extra}</td>
+                            <td>${data[i].imagen}</td></tr>`
+            }
+            document.getElementById('data').innerHTML = body
+        }
+    </script>
     <script src="../../vendor/jquery/jquery.min.js"></script>
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>

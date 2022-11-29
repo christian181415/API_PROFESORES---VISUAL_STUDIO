@@ -43,7 +43,7 @@ namespace Profesores.Controllers
                         Profesor.Extra = dr["Extra"].ToString();
                         Profesor.F_Profe = Convert.ToInt32(dr["F_Profe"]);
                         Profesor.imagen = dr["imagen"].ToString();
-                        Profesor.discpacidad = Convert.ToInt32(dr["F_EdoCivil"]);
+                        Profesor.discpacidad = Convert.ToInt32(dr["discpacidad"]);
 
                         NuevoPositivoProfe.Add(Profesor);
 
@@ -51,6 +51,43 @@ namespace Profesores.Controllers
                 }
             }
             return NuevoPositivoProfe;
+        }
+
+
+
+        //-----------------------------------------------------------------------------REGISTRAR
+        public static bool Registrar(ClassPositivoProfe NuevoPositivoProfe)
+        {
+            using (SqlConnection NuevaConexion = new SqlConnection(CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO PositivoProfe(FechaConfirmado, Comprobacion, Antecedentes, Riesgo, NumContaio, Extra, F_Profe, imagen, discpacidad)" +
+                    "VALUES (@FechaConfirmado, @Comprobacion, @Antecedentes, @Riesgo, @NumContaio, @Extra, @F_Profe, @imagen, @discpacidad)", NuevaConexion);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@FechaConfirmado", NuevoPositivoProfe.FechaConfirmado);
+                cmd.Parameters.AddWithValue("@Comprobacion", NuevoPositivoProfe.Comprobacion);
+                cmd.Parameters.AddWithValue("@Antecedentes", NuevoPositivoProfe.Antecedentes);
+                cmd.Parameters.AddWithValue("@Riesgo", NuevoPositivoProfe.Riesgo);
+                cmd.Parameters.AddWithValue("@NumContaio", NuevoPositivoProfe.NumContaio);
+                cmd.Parameters.AddWithValue("@Extra", NuevoPositivoProfe.Extra);
+                cmd.Parameters.AddWithValue("@F_Profe", NuevoPositivoProfe.F_Profe);
+                cmd.Parameters.AddWithValue("@imagen", NuevoPositivoProfe.imagen);
+                cmd.Parameters.AddWithValue("@discpacidad", NuevoPositivoProfe.discpacidad);
+
+                try
+                {
+                    NuevaConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+        public bool Post([FromBody] ClassPositivoProfe NuevoPositivoProfe)
+        {
+            return Registrar(NuevoPositivoProfe);
         }
     }
 }
