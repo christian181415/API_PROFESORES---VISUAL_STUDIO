@@ -36,6 +36,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
                         <a class="collapse-item active" href="../Profesores/index.html">Profesores</a>
+                        <a class="collapse-item" href="../Profesores/profeID.html">Profesores sin ID's'</a>
                         <a class="collapse-item" href="../Profesores/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -56,6 +57,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
                         <a class="collapse-item" href="positivos.html">Profesores</a>
+                        <a class="collapse-item" href="positivosID.html">Profesores sin ID's'</a>
                         <a class="collapse-item" href="registro.html">Registrar</a>
                     </div>
                 </div>
@@ -76,6 +78,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
                         <a class="collapse-item" href="../Seguimientos/seguimiento.html">Profesores</a>
+                        <a class="collapse-item" href="../Seguimientos/seguimientoID.html">Profesores sin ID's'</a>
                         <a class="collapse-item" href="../Seguimientos/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -139,11 +142,12 @@
                                     <input type="text" class="form-control form-control-user mb-2" id="txtRiesgo" placeholder="Riesgo">
                                     <input type="number" class="form-control form-control-user mb-2" id="txtNumContaio" placeholder="NumContagio">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtExtra" placeholder="Extra">
-                                    <input type="number" class="form-control form-control-user mb-2" id="txtF_Profe" placeholder="Profesor">
+                                    <!--<input type="number" class="form-control form-control-user mb-2" id="txtF_Profe" placeholder="Profesor">-->
+                                    <select name="select" class="form-control form-control-user mb-2" id="data"></select>
                                     <input type="text" class="form-control form-control-user mb-2" id="txtimagen" placeholder="Imagen">
                                     <input type="number" class="form-control form-control-user mb-2" id="txtdiscpacidad" placeholder="Discapacidad">
                                 </div>
-                                <button type="button" class="btn btn-primary" onclick="GuardarProfesor()">Guardar</button>
+                                <button type="button" class="btn btn-primary btn-user btn-block mb-4" onclick="GuardarProfesor()">Guardar</button>
                             </form>
                         </div>
                     </div>
@@ -181,6 +185,22 @@
                         alert("Error al guardar");
                     }
                 });
+        }
+    </script>
+    <script>
+        let url = 'http://localhost:60805/api/Profesor?type=json'
+        fetch(url)
+            .then(response => response.json())
+            .then(data => mostrarData(data))
+            .then(error => console.log(error))
+
+        const mostrarData = (data) => {
+            console.log(data);
+            let body = ''
+            for (let i = 0; i < data.length; i++) {
+                body += `<option value="${data[i].ID_Profe}" id="txtF_Profe">${data[i].Nombre} ${data[i].Ap_pat} ${data[i].Ap_Mat}</option>`
+            }
+            document.getElementById('data').innerHTML = body
         }
     </script>
     <script src="../../vendor/jquery/jquery.min.js"></script>

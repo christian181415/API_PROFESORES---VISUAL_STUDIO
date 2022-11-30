@@ -1772,12 +1772,15 @@
     <Content Include="Resources\vendor\jquery\jquery.slim.js" />
     <Content Include="Resources\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Resources\views\Positivos\positivos.html" />
+    <Content Include="Resources\views\Positivos\positivosID.html" />
     <Content Include="Resources\views\Positivos\registro.html" />
     <Content Include="Resources\views\Presentan\presentan.html" />
     <Content Include="Resources\views\Profesores\index.html" />
+    <Content Include="Resources\views\Profesores\profeID.html" />
     <Content Include="Resources\views\Profesores\registro.html" />
     <Content Include="Resources\views\Seguimientos\registro.html" />
     <Content Include="Resources\views\Seguimientos\seguimiento.html" />
+    <Content Include="Resources\views\Seguimientos\seguimientoID.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

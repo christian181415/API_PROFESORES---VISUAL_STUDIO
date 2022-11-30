@@ -40,6 +40,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
                         <a class="collapse-item active" href="index.html">Profesores</a>
+                        <a class="collapse-item" href="profeID.html">Profesores sin ID's'</a>
                         <a class="collapse-item" href="registro.html">Registrar</a>
                     </div>
                 </div>
@@ -60,6 +61,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
                         <a class="collapse-item" href="../Positivos/positivos.html">Profesores</a>
+                        <a class="collapse-item" href="../Positivos/positivosID.html">Profesores sin ID's'</a>
                         <a class="collapse-item" href="../Positivos/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -80,6 +82,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
                         <a class="collapse-item" href="../Seguimientos/seguimiento.html">Profesores</a>
+                        <a class="collapse-item" href="../Seguimientos/seguimientoID.html">Profesores sin ID's'</a>
                         <a class="collapse-item" href="../Seguimientos/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -145,17 +148,11 @@
                                     <input type="text" class="form-control form-control-user mb-2" id="txtCategoria" placeholder="Categoria">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtCorreo" placeholder="Correo">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtCelular" placeholder="Celular">
-                                    <input type="text" class="form-control form-control-user mb-2" id="txtF_EdoCivil" placeholder="Estado Civil">
-                                    <select name="select" class="form-control form-control-user mb-2">
-                                        <option value="opc1">Opcion 1</option>
-                                        <option value="opc2">Opcion 2</option>
-                                        <option value="opc3">Opcion 3</option>
-                                    </select>
+                                    <!--<input type="text" class="form-control form-control-user mb-2" id="txtF_EdoCivil" placeholder="Estado Civil">-->
+                                    
+                                    <select name="select" class="form-control form-control-user mb-2" id="data"></select>
                                 </div>
-                                <a href="#" class="btn btn-primary btn-user btn-block mb-4">
-                                    GUARDAR
-                                </a>
-                                <button type="button" class="btn btn-primary" onclick="GuardarProfesor()">Guardar</button>
+                                <button type="button" class="btn btn-primary btn-user btn-block mb-4" onclick="GuardarProfesor()">GUARDAR</button>
                             </form>
                         </div>
                     </div>
@@ -195,6 +192,42 @@
                 });
         }
     </script>
+
+    <script>
+        let url = 'http://localhost:60805/api/EdoCivil?type=json'
+        fetch(url)
+            .then(response => response.json())
+            .then(data => mostrarData(data))
+            .then(error => console.log(error))
+
+        const mostrarData = (data) => {
+            console.log(data);
+            let body = ''
+            for (let i = 0; i < data.length; i++) {
+                body += `<option value="${data[i].Id_Edo}" id="txtF_EdoCivil">${data[i].Estado}</option>`
+            }
+            document.getElementById('data').innerHTML = body
+        }
+    </script>
+    <!--<script>
+        window.onload = function () {
+            Obtener();
+        }
+        function Obtener() {
+            $(".table tbody").html("");
+
+            $.get("http://localhost:60805/api/EdoCivil?type=json")
+                .done(function (responseEdo) {
+                    console.log(responseEdo);
+                    $.each(responseEdo, function (id, fila) {
+                        $("<tr>").append(
+                            $("<td>").text(fila.Id_Edo),
+                            $("<td>").text(fila.Estado),
+                        ).appendTo(".table");
+                    });
+                });
+        }
+    </script>-->
     <script src="../../vendor/jquery/jquery.min.js"></script>
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>

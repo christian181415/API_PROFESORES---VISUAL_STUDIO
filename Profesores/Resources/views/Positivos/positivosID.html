@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Seguimiento | Producto02</title>
+    <title>Positivos | Producto02</title>
 
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -56,9 +56,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="../Positivos/positivos.html">Profesores</a>
-                        <a class="collapse-item" href="../Positivos/positivosID.html">Profesores sin ID's'</a>
-                        <a class="collapse-item" href="../Positivos/registro.html">Registrar</a>
+                        <a class="collapse-item" href="positivos.html">Profesores</a>
+                        <a class="collapse-item" href="positivosID.html">Profesores sin ID's'</a>
+                        <a class="collapse-item" href="registro.html">Registrar</a>
                     </div>
                 </div>
             </li>
@@ -77,9 +77,9 @@
                 <div id="collapsethree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="seguimiento.html">Profesores</a>
-                        <a class="collapse-item" href="seguimientoID.html">Profesores sin ID's'</a>
-                        <a class="collapse-item" href="registro.html">Registrar</a>
+                        <a class="collapse-item" href="../Seguimientos/seguimiento.html">Profesores</a>
+                        <a class="collapse-item" href="../Seguimientos/seguimientoID.html">Profesores sin ID's'</a>
+                        <a class="collapse-item" href="../Seguimientos/registro.html">Registrar</a>
                     </div>
                 </div>
             </li>
@@ -131,22 +131,21 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Listado del seguimiento de los Profesores</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Listado de profesores positivos con Covid19</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>PositivoProfe</th>
-                                            <th>Medico</th>
-                                            <th>Fecha</th>
-                                            <th>Forma Comunicacion</th>
-                                            <th>Reporte</th>
-                                            <th>Entrevista</th>
+                                            <th>Fecha Confirmado</th>
+                                            <th>Comprobacion</th>
+                                            <th>Antecedentes</th>
+                                            <th>Riesgo</th>
+                                            <th>NumContagio</th>
                                             <th>Extra</th>
                                             <th>Imagen</th>
+                                            <th>Discapacidad</th>
                                         </tr>
                                     </thead>
                                     <tbody id="data">
@@ -166,7 +165,7 @@
 
 
     <script>
-        let url = 'http://localhost:60805/api/SeguimientoProfe?type=json'
+        let url = 'http://localhost:60805/api/PositivoProfe?type=json'
         fetch(url)
             .then(response => response.json())
             .then(data => mostrarData(data))
@@ -176,15 +175,14 @@
             console.log(data);
             let body = ''
             for (let i = 0; i < data.length; i++) {
-                body += `<tr><td>${data[i].id_Segui}</td>
-                                <td>${data[i].F_positivoProfe}</td>
-                                <td>${data[i].F_medico}</td>
-                                <td>${data[i].Fecha}</td>
-                                <td>${data[i].Form_Comunica}</td>
-                                <td>${data[i].Reporte}</td>
-                                <td>${data[i].Entrevista}</td>
-                                <td>${data[i].Extra}</td>
-                                <td>${data[i].imagen}</td></tr>`
+                body += `<tr><td>${data[i].FechaConfirmado}</td>
+                            <td>${data[i].Comprobacion}</td>
+                            <td>${data[i].Antecedentes}</td>
+                            <td>${data[i].Riesgo}</td>
+                            <td>${data[i].NumContaio}</td>
+                            <td>${data[i].Extra}</td>
+                            <td>${data[i].imagen}</td>
+                            <td>${data[i].discpacidad}</td></tr>`
             }
             document.getElementById('data').innerHTML = body
         }

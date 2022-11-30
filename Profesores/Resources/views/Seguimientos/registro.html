@@ -36,6 +36,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
                         <a class="collapse-item active" href="../Profesores/index.html">Profesores</a>
+                        <a class="collapse-item" href="../Profesores/profeID.html">Profesores sin ID's'</a>
                         <a class="collapse-item" href="../Profesores/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -56,6 +57,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
                         <a class="collapse-item" href="../Positivos/positivos.html">Profesores</a>
+                        <a class="collapse-item" href="../Positivos/positivosID.html">Profesores sin ID's'</a>
                         <a class="collapse-item" href="../Positivos/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -75,8 +77,9 @@
                 <div id="collapsethree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="../Seguimientos/seguimiento.html">Profesores</a>
-                        <a class="collapse-item" href="../Seguimientos/registro.html">Registrar</a>
+                        <a class="collapse-item" href="seguimiento.html">Profesores</a>
+                        <a class="collapse-item" href="seguimientoID.html">Profesores sin ID's'</a>
+                        <a class="collapse-item" href="registro.html">Registrar</a>
                     </div>
                 </div>
             </li>
@@ -133,8 +136,8 @@
                             <form>
                                 <div class="form-group">
                                     <input type="hidden" id="txtid_Segui">
-                                    <input type="number" class="form-control form-control-user mb-2" id="txtF_positivoProfe" placeholder="Profesor Positivo">
-                                    <input type="number" class="form-control form-control-user mb-2" id="txtF_medico" placeholder="Medico">
+                                    <select name="select" class="form-control form-control-user mb-2" id="data01"></select>
+                                    <select name="select" class="form-control form-control-user mb-2" id="data02"></select>
                                     <input type="date" class="form-control form-control-user mb-2" id="txtFecha" placeholder="Fecha">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtForm_Comunica" placeholder="Forma de Comunicacion">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtReporte" placeholder="Reporte">
@@ -179,6 +182,40 @@
                         alert("Error al guardar");
                     }
                 });
+        }
+    </script>
+
+    <!------------------------------------------------------------------------------------------------------------------------>
+    <script>
+        let url = 'http://localhost:60805/api/PositivoProfe?type=json'
+        fetch(url)
+            .then(response => response.json())
+            .then(data01 => mostrarData(data01))
+            .then(error => console.log(error))
+
+        const mostrarData = (data01) => {
+            console.log(data01);
+            let body = ''
+            for (let i = 0; i < data01.length; i++) {
+                body += `<option value="${data01[i].id_posProfe}" id="txtF_positivoProfe">${data01[i].Comprobacion}</option>`
+            }
+            document.getElementById('data01').innerHTML = body
+        }
+    </script>
+    <script>
+        let url02 = 'http://localhost:60805/api/Medico?type=json'
+        fetch(url02)
+            .then(response => response.json())
+            .then(data02 => mostrarData02(data02))
+            .then(error => console.log(error))
+
+        const mostrarData02 = (data02) => {
+            console.log(data02);
+            let body = ''
+            for (let i = 0; i < data02.length; i++) {
+                body += `<option value="${data02[i].ID_Dr}" id="txtF_medico">${data02[i].Nombre} ${data02[i].App} ${data02[i].Apm}</option>`
+            }
+            document.getElementById('data02').innerHTML = body
         }
     </script>
     <script src="../../vendor/jquery/jquery.min.js"></script>
