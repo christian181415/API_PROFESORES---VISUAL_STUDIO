@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Profesores
 {
@@ -11,7 +12,11 @@ namespace Profesores
     {
         public static void Register(HttpConfiguration config)
         {
+
             // Configuración y servicios de Web API
+            var enableCorsAttribute = new EnableCorsAttribute("*", "Origin", "Content-Type, Accept", "GET, POST");
+            config.EnableCors(enableCorsAttribute);
+
 
             // Rutas de Web API
             config.MapHttpAttributeRoutes();
