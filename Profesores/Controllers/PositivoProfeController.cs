@@ -14,6 +14,7 @@ namespace Profesores.Controllers
 {
     public class PositivoProfeController : ApiController
     {
+        //----------------------------------------------------------------------------CADENA DE CONEXION
         private static string CadenaConexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ToString();
         private static List<ClassPositivoProfe> NuevoPositivoProfe = new List<ClassPositivoProfe>();
         // GET: Profesor
