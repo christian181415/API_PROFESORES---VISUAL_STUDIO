@@ -55,7 +55,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="../Positivos/positivo.html">Profesores</a>
+                        <a class="collapse-item" href="../Positivos/positivos.html">Profesores</a>
                         <a class="collapse-item" href="../Positivos/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -136,10 +136,10 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>F PositivoProfe</th>
-                                            <th>F Medico</th>
+                                            <th>PositivoProfe</th>
+                                            <th>Medico</th>
                                             <th>Fecha</th>
-                                            <th>Form Comunica</th>
+                                            <th>Forma Comunicacion</th>
                                             <th>Reporte</th>
                                             <th>Entrevista</th>
                                             <th>Extra</th>
@@ -174,14 +174,14 @@
             let body = ''
             for (let i = 0; i < data.length; i++) {
                 body += `<tr><td>${data[i].id_Segui}</td>
-                            <td>${data[i].F_positivoProfe}</td>
-                            <td>${data[i].F_medico}</td>
-                            <td>${data[i].Fecha}</td>
-                            <td>${data[i].Form_Comunica}</td>
-                            <td>${data[i].Reporte}</td>
-                            <td>${data[i].Entrevista}</td>
-                            <td>${data[i].Extra}</td>
-                            <td>${data[i].imagen}</td></tr>`
+                                <td>${data[i].F_positivoProfe}</td>
+                                <td>${data[i].F_medico}</td>
+                                <td>${data[i].Fecha}</td>
+                                <td>${data[i].Form_Comunica}</td>
+                                <td>${data[i].Reporte}</td>
+                                <td>${data[i].Entrevista}</td>
+                                <td>${data[i].Extra}</td>
+                                <td>${data[i].imagen}</td></tr>`
             }
             document.getElementById('data').innerHTML = body
         }

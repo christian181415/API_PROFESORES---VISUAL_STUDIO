@@ -55,7 +55,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="positivo.html">Profesores</a>
+                        <a class="collapse-item" href="positivos.html">Profesores</a>
                         <a class="collapse-item" href="registro.html">Registrar</a>
                     </div>
                 </div>
@@ -136,13 +136,13 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>FechaConfirmado</th>
+                                            <th>Fecha Confirmado</th>
                                             <th>Comprobacion</th>
                                             <th>Antecedentes</th>
                                             <th>Riesgo</th>
-                                            <th>NumContajio</th>
+                                            <th>NumContagio</th>
                                             <th>Extra</th>
-                                            <th>F_Profe</th>
+                                            <th>Profesor</th>
                                             <th>Imagen</th>
                                             <th>Discapacidad</th>
                                         </tr>
@@ -162,6 +162,7 @@
     </a>
 
 
+
     <script>
         let url = 'http://localhost:60805/api/PositivoProfe?type=json'
         fetch(url)
@@ -174,15 +175,15 @@
             let body = ''
             for (let i = 0; i < data.length; i++) {
                 body += `<tr><td>${data[i].id_posProfe}</td>
-                         <td>${data[i].FechaConfirmado}</td>
-                         <td>${data[i].Comprobacion}</td>
-                         <td>${data[i].Antecedentes}</td>
-                         <td>${data[i].Riesgo}</td>
-                         <td>${data[i].NumContaio}</td>
-                         <td>${data[i].Extra}</td>
-                         <td>${data[i].F_Profe}</td>
-                         <td>${data[i].imagen}</td>
-                         <td>${data[i].discpacidad}</td></tr>`
+                            <td>${data[i].FechaConfirmado}</td>
+                            <td>${data[i].Comprobacion}</td>
+                            <td>${data[i].Antecedentes}</td>
+                            <td>${data[i].Riesgo}</td>
+                            <td>${data[i].NumContaio}</td>
+                            <td>${data[i].Extra}</td>
+                            <td>${data[i].F_Profe}</td>
+                            <td>${data[i].imagen}</td>
+                            <td>${data[i].discpacidad}</td></tr>`
             }
             document.getElementById('data').innerHTML = body
         }

@@ -55,7 +55,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="../Positivos/positivo.html">Profesores</a>
+                        <a class="collapse-item" href="../Positivos/positivos.html">Profesores</a>
                         <a class="collapse-item" href="../Positivos/registro.html">Registrar</a>
                     </div>
                 </div>
@@ -174,14 +174,15 @@
             let body = ''
             for (let i = 0; i < data.length; i++) {
                 body += `<tr><td>${data[i].ID_Profe}</td>
-                                            <td>${data[i].RegistroEmpleado}</td>
-                                            <td>${data[i].Nombre}</td>
-                                            <td>${data[i].Ap_pat}</td>
-                                            <td>${data[i].Ap_Mat}</td>
-                                            <td>${data[i].Genero}</td>
-                                            <td>${data[i].Categoria}</td>
-                                            <td>${data[i].Correo}</td>
-                                            <td>${data[i].F_EdoCivil}</td></tr>`
+                            <td>${data[i].RegistroEmpleado}</td>
+                            <td>${data[i].Nombre}</td>
+                            <td>${data[i].Ap_pat}</td>
+                            <td>${data[i].Ap_Mat}</td>
+                            <td>${data[i].Genero}</td>
+                            <td>${data[i].Categoria}</td>
+                            <td>${data[i].Correo}</td>
+                            <td>${data[i].Celular}</td>
+                            <td>${data[i].F_EdoCivil}</td></tr>`
             }
             document.getElementById('data').innerHTML = body
         }

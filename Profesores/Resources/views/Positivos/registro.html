@@ -55,7 +55,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Complementos:</h6>
-                        <a class="collapse-item" href="positivo.html">Profesores</a>
+                        <a class="collapse-item" href="positivos.html">Profesores</a>
                         <a class="collapse-item" href="registro.html">Registrar</a>
                     </div>
                 </div>
@@ -127,31 +127,23 @@
                 <div class="container-fluid">
                     <div class="card mb-4">
                         <div class="card-header m-0 font-weight-bold text-primary">
-                            Registro de Profesores
+                            Registro de Positivos Profesores Covid19
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
-                                    <input type="hidden" id="txtidProfesor">
-                                    <input type="date" class="form-control form-control-user mb-2" id="txtFechaConfirmado" placeholder="Fecha de confirmacion">
+                                    <input type="hidden" id="txtid_posProfe">
+                                    <input type="date" class="form-control form-control-user mb-2" id="txtFechaConfirmado" placeholder="Fecha Confirmacion">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtComprobacion" placeholder="Comprobacion">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtAntecedentes" placeholder="Antecedentes">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtRiesgo" placeholder="Riesgo">
-                                    <input type="text" class="form-control form-control-user mb-2" id="txtNumContaio" placeholder="Numero de Contagio">
+                                    <input type="number" class="form-control form-control-user mb-2" id="txtNumContaio" placeholder="NumContagio">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtExtra" placeholder="Extra">
-                                    <input type="text" class="form-control form-control-user mb-2" id="txtF_Profe" placeholder="F Profe">
+                                    <input type="number" class="form-control form-control-user mb-2" id="txtF_Profe" placeholder="Profesor">
                                     <input type="text" class="form-control form-control-user mb-2" id="txtimagen" placeholder="Imagen">
-                                    <input type="text" class="form-control form-control-user mb-2" id="txtdiscpacidad" placeholder="Discapacidad">
-                                    <!--<select name="select" class="form-control form-control-user mb-2">
-                    <option value="opc1">Opcion 1</option>
-                    <option value="opc2">Opcion 2</option>
-                    <option value="opc3">Opcion 3</option>
-                </select>-->
+                                    <input type="number" class="form-control form-control-user mb-2" id="txtdiscpacidad" placeholder="Discapacidad">
                                 </div>
-                                <a class="btn btn-primary btn-user btn-block mb-4" onclick="GuardarProfesor()">
-                                    GUARDAR
-                                </a>
-                                <button type="button" class="btn btn-primary btn-user btn-block mb-4" onclick="GuardarProfesor()">Guardar</button>
+                                <button type="button" class="btn btn-primary" onclick="GuardarProfesor()">Guardar</button>
                             </form>
                         </div>
                     </div>
@@ -162,7 +154,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
 
 
 
@@ -184,8 +175,8 @@
                 .done(function (response) {
                     console.log(response);
                     if (response) {
-                        alert("Usuario Registrado");
-                        window.location = "positivo.html";
+                        alert("Usuario Positivo Registrado");
+                        window.location = "positivos.html";
                     } else {
                         alert("Error al guardar");
                     }
